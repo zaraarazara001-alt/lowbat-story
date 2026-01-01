@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Lowbat Story</title>
+
+<!-- CANONICAL LINK -->
+<link rel="canonical" href="https://zaraarazara001-alt.github.io/lowbat-story/">
+
+<style>
+  body {
+    margin: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    cursor: pointer;
+  }
+
+  /* Frame IG Story 9:16 */
+  .story {
+    width: 360px;
+    height: 640px;
+    position: relative;
+    overflow: hidden;
+    background: black;
+  }
+
+  .scene {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: opacity 0.8s ease, transform 1.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .scene.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+  }
+
+  .scene img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .text {
+    position: absolute;
+    bottom: 80px;
+    color: white;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    background: rgba(0,0,0,0.4);
+    padding: 10px 18px;
+    border-radius: 20px;
+  }
+
+  .tap {
+    position: absolute;
+    bottom: 20px;
+    color: #ccc;
+    font-size: 12px;
+    opacity: 0.7;
+  }
+</style>
+</head>
+
+<body onclick="nextScene()">
+<div class="story">
+
+  <!-- ADEGAN 1 -->
+  <div class="scene active">
+    <img src="lowbat.jpg">
+    <div class="text">Aku lowbat…</div>
+    <div class="tap">Tap untuk lanjut</div>
+  </div>
+
+  <!-- ADEGAN 2 -->
+  <div class="scene">
+    <img src="dipeluk.jpg">
+    <div class="text">Kalau kamu peluk 💕</div>
+    <div class="tap">Tap untuk lanjut</div>
+  </div>
+
+  <!-- ADEGAN 3 -->
+  <div class="scene">
+    <img src="fullbatre.jpg">
+    <div class="text">Langsung full batre ⚡</div>
+    <div class="tap">Tap untuk ulang</div>
+  </div>
+
+</div>
+
+<script>
+  let index = 0;
+  const scenes = document.querySelectorAll(".scene");
+
+  function nextScene() {
+    scenes[index].classList.remove("active");
+    index = (index + 1) % scenes.length;
+    scenes[index].classList.add("active");
+  }
+</script>
+
+</body>
+</html>
