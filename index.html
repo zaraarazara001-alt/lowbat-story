@@ -1,113 +1,93 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Lowbat Story</title>
+    <meta charset="UTF-8">
+    <title>For You 💖</title>
 
-<!-- CANONICAL LINK -->
-<link rel="canonical" href="https://zaraarazara001-alt.github.io/lowbat-story/">
+    <!-- SEO & Canonical -->
+    <link rel="canonical" href="https://zaraarazara001-alt.github.io/lowbat-story/">
+    <meta name="description" content="Animasi sederhana penuh cinta untuk menaikkan mood dan senyum.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-  body {
-    margin: 0;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    cursor: pointer;
-  }
+    <!-- Style -->
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-  /* Frame IG Story 9:16 */
-  .story {
-    width: 360px;
-    height: 640px;
-    position: relative;
-    overflow: hidden;
-    background: black;
-  }
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffd6e8, #ffeef5);
+            overflow: hidden;
+            font-family: "Segoe UI", system-ui, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-  .scene {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transform: scale(1.1);
-    transition: opacity 0.8s ease, transform 1.2s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+        .text {
+            position: absolute;
+            text-align: center;
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
+            color: #ff4f8b;
+            line-height: 1.4;
+            animation: fadePulse 3s ease-in-out infinite alternate;
+            padding: 0 1rem;
+        }
 
-  .scene.active {
-    opacity: 1;
-    transform: scale(1);
-    z-index: 1;
-  }
+        @keyframes fadePulse {
+            from { opacity: 0.4; transform: scale(0.98); }
+            to   { opacity: 1;   transform: scale(1); }
+        }
 
-  .scene img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+        .heart {
+            position: absolute;
+            bottom: -10vh;
+            font-size: 1.4rem;
+            pointer-events: none;
+            animation: floatUp linear forwards;
+        }
 
-  .text {
-    position: absolute;
-    bottom: 80px;
-    color: white;
-    font-size: 20px;
-    font-family: Arial, sans-serif;
-    background: rgba(0,0,0,0.4);
-    padding: 10px 18px;
-    border-radius: 20px;
-  }
-
-  .tap {
-    position: absolute;
-    bottom: 20px;
-    color: #ccc;
-    font-size: 12px;
-    opacity: 0.7;
-  }
-</style>
+        @keyframes floatUp {
+            from {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-120vh) scale(1.6);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
-<body onclick="nextScene()">
-<div class="story">
+<body>
+    <main aria-label="Mood Booster Animation">
+        <div class="text">
+            Senyum kamu itu cantik 🌸<br>
+            Semangat ya adek 💖
+        </div>
+    </main>
 
-  <!-- ADEGAN 1 -->
-  <div class="scene active">
-    <img src="lowbat.jpg">
-    <div class="text">Aku lowbat…</div>
-    <div class="tap">Tap untuk lanjut</div>
-  </div>
+    <!-- Script -->
+    <script>
+        function createHeart() {
+            const heart = document.createElement("span");
+            heart.className = "heart";
+            heart.textContent = "💖";
 
-  <!-- ADEGAN 2 -->
-  <div class="scene">
-    <img src="dipeluk.jpg">
-    <div class="text">Kalau kamu peluk 💕</div>
-    <div class="tap">Tap untuk lanjut</div>
-  </div>
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (4 + Math.random() * 3) + "s";
 
-  <!-- ADEGAN 3 -->
-  <div class="scene">
-    <img src="fullbatre.jpg">
-    <div class="text">Langsung full batre ⚡</div>
-    <div class="tap">Tap untuk ulang</div>
-  </div>
+            document.body.appendChild(heart);
 
-</div>
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
 
-<script>
-  let index = 0;
-  const scenes = document.querySelectorAll(".scene");
-
-  function nextScene() {
-    scenes[index].classList.remove("active");
-    index = (index + 1) % scenes.length;
-    scenes[index].classList.add("active");
-  }
-</script>
-
+        setInterval(createHeart, 280);
+    </script>
 </body>
 </html>
